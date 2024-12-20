@@ -82,9 +82,10 @@ This project illustrates how multithreaded programming can enhance image process
 
 ---
 ### Author
-Anirudh C  & Aditya Ankanath
-**Bachelor’s in Information Science Engineering**  
-R V College of Engineering, Bengaluru
+- Anirudh C
+- Aditya Ankanath
+- **Bachelor’s in Information Science Engineering**  
+- R V College of Engineering, Bengaluru
 
 ---
 Feel free to reach out for suggestions or improvements!
