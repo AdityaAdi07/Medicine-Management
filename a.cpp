@@ -31,17 +31,17 @@ bool generateBMP(const std::string& filename, int width, int height) {
 
     // BMP info header
     unsigned char infoHeader[40] = {
-        40, 0, 0, 0,            // Header size
-        0, 0, 0, 0,             // Width (to be filled later)
-        0, 0, 0, 0,             // Height (to be filled later)
-        1, 0,                   // Planes
-        24, 0,                  // Bits per pixel
-        0, 0, 0, 0,             // Compression (none)
-        0, 0, 0, 0,             // Image size (can be 0 for uncompressed images)
-        0, 0, 0, 0,             // X pixels per meter
-        0, 0, 0, 0,             // Y pixels per meter
-        0, 0, 0, 0,             // Total colors
-        0, 0, 0, 0              // Important colors
+        40, 0, 0, 0,           
+        0, 0, 0, 0,            
+        0, 0, 0, 0,            
+        1, 0,                  
+        24, 0,                  
+        0, 0, 0, 0,            
+        0, 0, 0, 0,             
+        0, 0, 0, 0,             
+        0, 0, 0, 0,            
+        0, 0, 0, 0,            
+        0, 0, 0, 0              
     };
     std::memcpy(&infoHeader[4], &width, sizeof(width));
     std::memcpy(&infoHeader[8], &height, sizeof(height));
@@ -68,7 +68,6 @@ bool generateBMP(const std::string& filename, int width, int height) {
     return true;
 }
 
-// Function to apply grayscale filter using threads
 void applyGrayscale(std::vector<Pixel>& pixels, int start, int end) {
     for (int i = start; i < end; ++i) {
         unsigned char gray = static_cast<unsigned char>(0.3 * pixels[i].r + 0.59 * pixels[i].g + 0.11 * pixels[i].b);
@@ -83,7 +82,6 @@ bool processBMP(const std::string& inputFilename, const std::string& outputFilen
         return false;
     }
 
-    // Read headers
     unsigned char fileHeader[14];
     unsigned char infoHeader[40];
     file.read(reinterpret_cast<char*>(fileHeader), sizeof(fileHeader));
@@ -107,7 +105,6 @@ bool processBMP(const std::string& inputFilename, const std::string& outputFilen
     }
     file.close();
 
-    // Process image with threads
     int numThreads = std::thread::hardware_concurrency();
     if (numThreads == 0) numThreads = 4;
 
@@ -124,7 +121,6 @@ bool processBMP(const std::string& inputFilename, const std::string& outputFilen
         thread.join();
     }
 
-    // Write output file
     std::ofstream outFile(outputFilename, std::ios::binary);
     if (!outFile.is_open()) {
         std::cerr << "Error: Cannot open output file." << std::endl;
@@ -148,14 +144,12 @@ int main() {
     int width = 256;
     int height = 256;
 
-    // Generate a BMP image
     if (!generateBMP(generatedFilename, width, height)) {
         return 1;
     }
 
     std::cout << "BMP image generated and saved to " << generatedFilename << std::endl;
 
-    // Process the BMP image
     if (!processBMP(generatedFilename, outputFilename)) {
         return 1;
     }

@@ -41,7 +41,7 @@ The workload is distributed among available threads to accelerate processing. Fo
 
 ### Steps to Run
 1. Clone the repository.
-2. Open the project folder in your development environment.
+2. Open the project folder in your development environment, remember to use latest g++ compiler (64bit).
 3. Compile the code:
    ```bash
    g++ -o image_processing project.cpp -std=c++11 -lpthread
@@ -82,7 +82,7 @@ This project illustrates how multithreaded programming can enhance image process
 
 ---
 ### Author
-Anirudh C  
+Anirudh C  & Aditya Ankanath
 **Bachelor’s in Information Science Engineering**  
 R V College of Engineering, Bengaluru
 
